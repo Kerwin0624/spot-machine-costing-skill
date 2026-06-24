@@ -1,0 +1,4 @@
+.DS_Store
+gh-auth*.log
+gh-auth*.pid
+gh-auth-log-path.txt
