@@ -2,6 +2,14 @@
 
 所有版本变更在此按 SemVer 倒序记录。
 
+## 0.1.5 - 2026-06-29
+
+### Changed
+
+- Simplified `SKILL.md` into a shorter execution contract, hard rules, required workflow, and final self-check.
+- Changed the configuration summary template from five sections to eight sections: CPU, GPU, memory, system disk, data disk, management NIC, storage NIC, and compute NIC.
+- Reinforced key guardrails: dynamic header matching, prices only from `标准单价database`, interface-first matching with brand conditions, and confirmation before overwriting existing values.
+
 ## 0.1.4 - 2026-06-26
 
 ### Added
@@ -31,7 +39,7 @@
   - v0.1.3 起改为「**接口匹配先行 → 品牌匹配次之 → 通用 fallback**」。
 - **品牌是匹配条件之一，不是覆盖项**：
   - 同一接口下不同品牌的机器，命中价库里该接口对应的品牌专属行；找不到品牌专属行时再回落该接口的通用行。
-  - 超微 / 广达价格相对偏高是因为其数据盘使用 `E1.S` 接口，不是「E1.S 覆盖所有品牌」；华硕等使用 `U.2` 接口的机器仍按 `U.2` 通用行计入。
+  - E1.S 接口机器命中 E1.S 对应规则；U.2 接口机器命中 U.2 对应规则，不把单一接口规则覆盖到所有品牌。
 - **价格不硬编码**：在 SKILL.md / README.md 核心原则、§5、失败处理、贡献与变更中明确「所有金额来自 `标准单价database`，不在文档中硬编码」。
 - **覆写安全**：在核心原则和失败处理中明确「覆写现有数据（数量 / 单价 / 公式值）必须先告知用户并等待确认」。
 
@@ -39,12 +47,11 @@
 
 - 修正「E1.S 覆盖所有品牌」的过强措辞，替换为「接口命中后再按品牌匹配」。
 - 移除文档中所有硬编码金额示例（保留价库结构与单位说明），改为引用价库。
-- 修正 `Summary` Item 17（广达品牌、`E1.S` 数据盘）历史单价误判为通用规则的问题，由用户确认后更正。
 
 ### Compatibility
 
-- 对 `U.2` 接口、品牌不在价库专属规则内的机器：行为不变。
-- 对 `E1.S` 接口的现有行：若仍按 v0.1.2 填的旧单价，需要用户确认后批量更正。
+- 对 U.2 接口、品牌不在价库专属规则内的机器：行为不变。
+- 对 E1.S 接口的现有行：若仍按 v0.1.2 填的旧单价，需要用户确认后批量更正。
 
 ## 0.1.2 - 2026-06-24
 
